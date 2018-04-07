@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'simple_form', '~> 3.5', '>= 3.5.1'
   s.add_dependency 'turbolinks', '~> 5'
   s.add_dependency 'wicked', '~> 1.3', '>= 1.3.2'
+  s.add_dependency 'jquery-rails', '~> 4.3', '>= 4.3.1'
 
   s.add_development_dependency 'pg', '~> 0.18'
   s.add_development_dependency 'rspec-rails', '~> 3.7', '>= 3.7.2'

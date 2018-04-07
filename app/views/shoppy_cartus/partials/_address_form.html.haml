@@ -1,0 +1,25 @@
+= f.hidden_field :kind, id: kind, value: kind
+.form-group
+  = f.input :first_name, input_html: { class: 'form-control', id: "#{kind}_first_name" }, label: t('address.inputs_labels.first_name'),
+  placeholder: t('address.inputs_placeholders.first_name'), label_html: { class: 'control-label input-label' }
+.form-group
+  = f.input :last_name, input_html: { class: 'form-control', id: "#{kind}_last_name" }, label: t('address.inputs_labels.last_name'),
+  placeholder: t('address.inputs_placeholders.last_name'), label_html: { class: 'control-label input-label' }
+.form-group
+  = f.input :address, input_html: { class: 'form-control', id: "#{kind}_address" }, label: t('address.inputs_labels.address'),
+  placeholder: t('address.inputs_placeholders.address'), label_html: { class: 'control-label input-label' }
+.form-group
+  = f.input :city, input_html: { class: 'form-control', id: "#{kind}_city" }, label: t('address.inputs_labels.city'),
+  placeholder: t('address.inputs_placeholders.city'), label_html: { class: 'control-label input-label' }
+.form-group
+  = f.input :zip, input_html: { class: 'form-control', id: "#{kind}_zip" }, label: t('address.inputs_labels.zip'),
+  placeholder: t('address.inputs_placeholders.zip'), label_html: { class: 'control-label input-label' }
+.form-group
+  = f.input :country, input_html: { class: 'form-control', id: "#{kind}_country" }, label: t('address.inputs_labels.country'),
+    label_html: { class: 'control-label input-label' }, include_blank: t('address.inputs_placeholders.country')
+.form-group.mb-55
+  = f.input :phone, input_html: { class: 'form-control', id: "#{kind}_phone" }, label: t('address.inputs_labels.phone'),
+  placeholder: t('address.inputs_placeholders.phone'), label_html: { class: 'control-label input-label' }, as: :tel
+- if with_submit_btn
+  .text-center.general-text-align
+    = f.button :submit, class: 'btn'

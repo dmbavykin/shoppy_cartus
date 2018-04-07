@@ -1,0 +1,44 @@
+ru:
+  address:
+    successful:
+      create: Адрес успешно создан
+      update: Адрес успешно обновлен
+    failure:
+      create: Адрес не создан
+      update: Адрес не обновлен
+    inputs_placeholders:
+      first_name: Имя
+      last_name: Фамилия
+      address: Адрес
+      city: Город
+      zip: Почтовый индекс
+      country: Страна
+      phone: Например +355 66 123 4567
+    inputs_labels:
+      first_name: Имя
+      last_name: Фамилия
+      address: Адресс
+      city: Город
+      zip: Почтовый индекс
+      country: Выберите страну
+      phone: Телефон
+  coupon:
+    not_exist: Купон не найден
+    used: Купон использован
+    added: Купон добавлен к заказу
+    removed: Купон удален
+  cart:
+    no_more: Вы не можете приобрести больше единиц этого продукта
+    no_less: Вы не можете купить менее одной единицы продукта
+    successful_added: Продукт успешно добавлен
+    alredy_added: Продукт уже добавлен
+    empty: Ваша корзина пуста
+    removed_successful: Продукт успешн удален из корзины
+  order:
+    confirmed: Заказ подтвержден
+    confirm_email_subject: Подтвердите ваш заказ
+    wrong_token: Неверный токен
+    delivery:
+      error: Выберите метод доставки
+  checkout:
+    confirm_step_btn: Сохранить и продолжть

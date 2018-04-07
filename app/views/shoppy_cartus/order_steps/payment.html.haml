@@ -1,0 +1,42 @@
+%main.container.mb-res-50
+  = render 'order_steps/status'
+  %h3.general-subtitle Credit Card
+  = form_tag(wizard_path, class: 'max-600 mb-80', method: :put) do
+    = simple_fields_for(:credit_card, @form.credit_card) do |f|
+      .form-group
+        = f.input :number, input_html: { class: 'form-control' }, label: 'Card Number',
+        placeholder: "Card Number", label_html: { class: 'control-label input-label' }
+      .row
+        .col-sm-6
+          .form-group
+            = f.input :card_name, input_html: { class: 'form-control' }, label: 'Name on Card',
+            placeholder: "Name on Card", label_html: { class: 'control-label input-label' }
+        .col-sm-3
+          .form-group
+            = f.input :expiration_date, input_html: { class: 'form-control' }, label: "MM / YY",
+            placeholder: "MM / YY", label_html: { class: 'control-label input-label' }
+        .col-sm-3
+          .form-group.relative
+            = f.input :cvv, input_html: { class: 'form-control' }, label: "CVV",
+            placeholder: "CVV", label_html: { class: 'control-label input-label' }, as: :string
+            %i.fa.fa-question-circle.general-form-help
+    .general-text-align
+      %p.in-gold-500.font-18 Order Summary
+      %table.general-summary-table
+        %tr
+          %td
+            %p.font-16 Subtotal:
+          %td
+            %p.font-16= "€#{@order.total}"
+        %tr
+          %td
+            %p.font-16 Coupon:
+          %td
+            %p.font-16= "€#{@order.sale}"
+        %tr
+          %td
+            %strong.font-18 Order Total:
+          %td
+            %strong.font-18 €117.69
+    .text-center
+      = submit_tag(t('checkout.confirm_step_btn'), class: 'btn btn-default mb-80', id: 'payment-submit-btn')

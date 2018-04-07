@@ -1,0 +1,74 @@
+%main.container.general-main-wrap
+  = render 'order_steps/status'
+  %h3.general-subtitle Delivery
+  .visible-xs
+    .general-cart-item.divider-lg-bottom.mb-30.table-responsive
+      = form_tag(wizard_path, method: :put) do
+        %table.table
+          %tr
+            %td.col-half
+              %span.in-grey-600 Method
+            - @form.deliveries.each do |delivery|
+              %td.col-half
+                .form-group.radio.mt-0.mb-0
+                  %label.radio-label
+                    = radio_button_tag(:delivery, delivery.id, @order.delivery&.id == delivery.id, class: 'radio-input', hidden: "true", require: 'true' )
+                    %span.radio-icon
+                    %span.radio-text= delivery.title
+          %tr
+            %td
+              %span.in-grey-600 Days
+            - @form.deliveries.each do |delivery|
+              %td.text-center
+                %span.font-16.fw-300= delivery.days
+          %tr
+            %td
+              %span.in-grey-600 Price
+            - @form.deliveries.each do |delivery|
+              %td.text-center
+                %span.font-16.in-gold-500="€#{delivery.price}"
+        = submit_tag('Save and Continue', class: 'btn btn-default mb-20')
+  .hidden-xs.mb-res-50
+    = form_tag(wizard_path, method: :put) do
+      %table.table.table-hover
+        %thead
+          %tr
+            %th.col-method
+              %span.in-grey-600.ml-40 Method
+            %th
+              %span.in-grey-600 Days
+            %th
+              %span.in-grey-600 Price
+        %tbody
+          - @form.deliveries.each do |delivery|
+            %tr
+              %td
+                .form-group.radio.mt-0.mb-0
+                  %label.radio-label
+                    = radio_button_tag(:delivery, delivery.id, @order.delivery&.id == delivery.id, class: 'radio-input', hidden: "true", require: 'true' )
+                    %span.radio-icon
+                    %span.radio-text= delivery.title
+              %td
+                %span= delivery.days
+              %td
+                %span.font-16.in-gold-500="€#{delivery.price}"
+      .general-text-align
+        %p.in-gold-500.font-18 Order Summary
+        %table.general-summary-table
+          %tr
+            %td
+              %p.font-16 Subtotal:
+            %td
+              %p.font-16= "€#{@order.total}"
+          %tr
+            %td
+              %p.font-16 Coupon:
+            %td
+              %p.font-16= "€#{@order.sale}"
+          %tr
+            %td
+              %strong.font-18 Order Total:
+            %td
+              %strong.font-18= "€#{@order.total}"
+      .text-center
+        = submit_tag(t('checkout.confirm_step_btn'), class: 'btn btn-default mb-20', id: 'deliveries-submit-btn')
