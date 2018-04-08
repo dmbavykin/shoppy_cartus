@@ -1,7 +1,10 @@
 require "shoppy_cartus/engine"
+require 'digest'
 require 'aasm'
 require 'cancancan'
 require 'draper'
+require 'wicked'
+require 'country_select'
 require 'haml'
 require 'sass-rails'
 require 'bootstrap-sass'

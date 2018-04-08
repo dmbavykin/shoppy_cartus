@@ -1,5 +1,5 @@
 %main.container
-  = render 'order_steps/status'
+  = render 'shoppy_cartus/order_steps/status'
   = form_tag(wizard_path, class: 'res-mb-100', id: 'addresses_form', method: :put) do
     .hidden-xs.hidden-sm
       .row
@@ -10,11 +10,11 @@
     .row
       .col-md-5.mb-40
         = simple_fields_for :billing_address, @form.billing_address do |billing|
-          = render 'partials/address_form', f: billing, kind: :billing, with_submit_btn: false
+          = render 'shoppy_cartus/partials/address_form', f: billing, kind: :billing, with_submit_btn: false
       .col-md-5.col-md-offset-1.mb-60
         #order_shipping_address{class: (@order.use_billing ? 'hidden' : '')}
           = simple_fields_for :shipping_address, @form.shipping_address, html: { class: (@order.use_billing ? 'hidden' : '')} do |shipping|
-            = render 'partials/address_form', f: shipping, kind: :shipping, with_submit_btn: false
+            = render 'shoppy_cartus/partials/address_form', f: shipping, kind: :shipping, with_submit_btn: false
         .form-group.checkbox
           %label.checkbox-label
             = check_box_tag :use_billing, true, @order.use_billing, hidden: true, class: 'checkbox-input'

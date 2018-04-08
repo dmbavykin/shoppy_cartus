@@ -21,4 +21,8 @@ module FeatureHelper
   def stub_current_order(order)
     allow_any_instance_of(ShoppyCartus::ApplicationController).to receive(:current_order).and_return(order)
   end
+
+  def stub_current_user(user)
+    allow_any_instance_of(ShoppyCartus::ApplicationController).to receive(:current_user).and_return(user)
+  end
 end

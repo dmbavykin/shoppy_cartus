@@ -42,3 +42,4 @@ en:
       error: Choose delivery method
   checkout:
     confirm_step_btn: Save and Continue
+    authorize: Authorize

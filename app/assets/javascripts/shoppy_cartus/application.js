@@ -14,4 +14,5 @@
 //= require turbolinks
 //= require jquery
 //= require bootstrap-sprockets
+//= require shoppy_cartus/order_address
 //= require_tree .

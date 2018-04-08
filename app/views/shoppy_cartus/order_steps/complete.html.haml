@@ -1,5 +1,5 @@
 %main.container.general-main-wrap
-  = render 'order_steps/status'
+  = render 'shoppy_cartus/order_steps/status'
   .text-center
     %h3.general-subtitle Thank You for your Order!
     %p.fw-300= "An order confirmation has been has been sent to #{@order.user.email}"
@@ -24,15 +24,13 @@
   .visible-xs
     - @order.order_items.each do |order_item|
       .general-cart-item.divider-lg.mb-55
-        .general-img-wrap-table
-          = cl_image_tag(order_item.book.decorate.main_image, class: 'cart-img-shadow')
-        %p.title= order_item.book.title
+        %p.title= order_item.product.title
         %table.table
           %tr
             %td
               %span.in-grey-600 Price
             %td
-              %span.font-16.in-gold-500= "€#{order_item.book.price}"
+              %span.font-16.in-gold-500= "€#{order_item.product.price}"
           %tr
             %td.vertical-middle
               %span.in-grey-600 Quantity
@@ -48,7 +46,7 @@
       %thead
         %tr
           %th
-            %span.in-grey-600 Book
+            %span.in-grey-600 Product
           %th.col-method
           %th
             %span.in-grey-600 Price
@@ -60,13 +58,9 @@
         - @order.order_items.each do |order_item|
           %tr
             %td
-              .general-img-wrap-table
-                = cl_image_tag(order_item.book.decorate.main_image, class: 'cart-img-shadow pull-left')
+              %p.title= order_item.product.title
             %td
-              %p.title= order_item.book.title
-              %p.in-grey-600.fw-300= order_item.book.description
-            %td
-              %span.font-16.in-gold-500= "€#{order_item.book.price}"
+              %span.font-16.in-gold-500= "€#{order_item.product.price}"
             %td
               %span.ml-30= order_item.quantity
             %td
@@ -90,4 +84,4 @@
         %td
           %strong.font-18= "€#{@order.total_with_delivery}"
   .text-center
-    = link_to 'Back to Store', root_path, class: 'btn btn-default mb-20 '
+    = link_to 'Back to Store', order_items_path, class: 'btn btn-default mb-20 '

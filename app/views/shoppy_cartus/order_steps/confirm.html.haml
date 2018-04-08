@@ -1,5 +1,5 @@
 %main.container.general-main-wrap
-  = render 'order_steps/status'
+  = render 'shoppy_cartus/order_steps/status'
   .row.mb-20
     - @order.addresses.each do |address|
       .col-sm-3
@@ -32,16 +32,13 @@
   .visible-xs
     - @order.order_items.each do |order_item|
       .general-cart-item.divider-lg
-        .general-img-wrap-table
-          = cl_image_tag(order_item.book.decorate.main_image, class: 'cart-img-shadow')
-        %p.title= order_item.book.title
-        %p.in-grey-600.fw-300= order_item.book.description
+        %p.title= order_item.product.title
         %table.table
           %tr
             %td
               %span.in-grey-600 Price
             %td
-              %span.font-16.in-gold-500= "€#{order_item.book.price}"
+              %span.font-16.in-gold-500= "€#{order_item.product.price}"
           %tr
             %td.vertical-middle
               %span.in-grey-600 Quantity
@@ -57,7 +54,7 @@
       %thead
         %tr
           %th
-            %span.in-grey-600 Book
+            %span.in-grey-600 Product
           %th.col-method
           %th
             %span.in-grey-600 Price
@@ -69,13 +66,9 @@
         - @order.order_items.each do |order_item|
           %tr
             %td
-              .general-img-wrap-table
-                = cl_image_tag(order_item.book.decorate.main_image, class: 'cart-img-shadow pull-left')
+              %p.title= order_item.product.title
             %td
-              %p.title= order_item.book.title
-              %p.in-grey-600.fw-300= order_item.book.description
-            %td
-              %span.font-16.in-gold-500= "€#{order_item.book.price}"
+              %span.font-16.in-gold-500= "€#{order_item.product.price}"
             %td
               %span.ml-30= order_item.quantity
             %td

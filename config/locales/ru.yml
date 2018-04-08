@@ -42,3 +42,4 @@ ru:
       error: Выберите метод доставки
   checkout:
     confirm_step_btn: Сохранить и продолжть
+    authorize: Авторизируйтесь

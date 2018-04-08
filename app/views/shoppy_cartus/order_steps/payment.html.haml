@@ -1,5 +1,5 @@
 %main.container.mb-res-50
-  = render 'order_steps/status'
+  = render 'shoppy_cartus/order_steps/status'
   %h3.general-subtitle Credit Card
   = form_tag(wizard_path, class: 'max-600 mb-80', method: :put) do
     = simple_fields_for(:credit_card, @form.credit_card) do |f|
