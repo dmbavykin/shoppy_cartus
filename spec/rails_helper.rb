@@ -5,14 +5,20 @@ if Rails.env.production?
 end
 require 'spec_helper'
 require 'rspec/rails'
-require 'capybara/rspec'
 
 ActiveRecord::Migration.maintain_test_schema!
+
+ENGINE_ROOT = File.join(File.dirname(__FILE__), '../')
+%w(support factories).each do |folder|
+  Dir[File.join(ENGINE_ROOT, "spec/#{folder}/**/*.rb")].each do |file|
+    require file
+  end
+end
 
 RSpec.configure do |config|
   config.include Shoulda::Matchers::ActiveModel
   config.include Shoulda::Matchers::ActiveRecord
-  config.include FactoryBot::Syntax::Methods
+  config.include FeatureHelper, type: :feature
   config.include I18n
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
