@@ -1,4 +1,4 @@
-require_dependency "shoppy_cartus/application_controller"
+require_dependency 'shoppy_cartus/application_controller'
 
 module ShoppyCartus
   class OrderItemsController < ApplicationController

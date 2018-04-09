@@ -1,4 +1,4 @@
-require File.expand_path('../dummy/config/environment', __FILE__)
+require File.expand_path('dummy/config/environment', __dir__)
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

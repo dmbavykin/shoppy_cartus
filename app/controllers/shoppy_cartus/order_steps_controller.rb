@@ -3,7 +3,7 @@ module ShoppyCartus
     include Wicked::Wizard
     steps :address, :delivery, :payment, :confirm, :complete
     before_action "authenticate_#{ShoppyCartus.user_class.downcase}!".to_sym, :check_order, :relate_with_user,
-    :set_form, :set_needful_step
+                  :set_form, :set_needful_step
 
     def index
       redirect_to_step(@needful_step)

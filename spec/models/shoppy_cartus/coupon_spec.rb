@@ -1,7 +1,7 @@
 module ShoppyCartus
   describe Coupon, type: :model do
     context 'check relations' do
-      it "belongs to order" do
+      it 'belongs to order' do
         is_expected.to belong_to(:order)
       end
     end

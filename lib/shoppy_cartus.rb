@@ -1,4 +1,4 @@
-require "shoppy_cartus/engine"
+require 'shoppy_cartus/engine'
 require 'digest'
 require 'aasm'
 require 'cancancan'

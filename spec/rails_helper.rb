@@ -9,7 +9,7 @@ require 'rspec/rails'
 ActiveRecord::Migration.maintain_test_schema!
 
 ENGINE_ROOT = File.join(File.dirname(__FILE__), '../')
-%w(support factories).each do |folder|
+%w[support factories].each do |folder|
   Dir[File.join(ENGINE_ROOT, "spec/#{folder}/**/*.rb")].each do |file|
     require file
   end

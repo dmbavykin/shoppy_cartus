@@ -9,7 +9,6 @@ module ShoppyCartus
 
     before { allow(controller).to receive(:current_user).and_return(user) }
 
-
     describe 'GET #index' do
       context 'successful load' do
         it 'has a 302 status code by wicked' do
