@@ -1,4 +1,5 @@
 ShoppyCartus::Engine.routes.draw do
+  root to: 'order_items#index'
   resources :orders do
     get '/confirm/:token', to: 'orders#confirm', as: 'confirm'
   end
