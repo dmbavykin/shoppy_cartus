@@ -20,6 +20,9 @@ module ShoppyCartus
   mattr_accessor :product_class
   @@product_class = 'Book'
 
+  mattr_accessor :parent_controller
+  @@parent_controller = 'ApplicationController'
+
   def self.setup
     yield self
   end

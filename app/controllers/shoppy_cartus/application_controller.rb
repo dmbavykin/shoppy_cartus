@@ -1,5 +1,5 @@
 module ShoppyCartus
-  class ApplicationController < ActionController::Base
+  class ApplicationController < ShoppyCartus.parent_controller.constantize
     before_action :set_order, :set_locale, :current_ability
 
     [CanCan::AccessDenied, ActiveRecord::RecordNotFound, ActionController::RoutingError].each do |error|
@@ -11,10 +11,6 @@ module ShoppyCartus
     define_method "authenticate_#{ShoppyCartus.user_class.downcase}!" do
       return if current_user
       redirect_to order_items_path, alert: t('checkout.authorize')
-    end
-
-    def current_user
-      @current_user ||= ShoppyCartus.user_class.constantize.find_by(id: session[:user_id])
     end
 
     def current_order
