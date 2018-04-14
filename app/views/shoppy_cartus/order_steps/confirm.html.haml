@@ -1,0 +1,95 @@
+%main.container.general-main-wrap
+  = render 'shoppy_cartus/order_steps/status'
+  .row.mb-20
+    - @order.addresses.each do |address|
+      .col-sm-3
+        %h3.general-subtitle= "#{address.kind.capitalize} Address"
+        %p.general-address
+          = "#{address.first_name} #{address.last_name}"
+          %span.general-edit= link_to 'edit', wizard_path(:address)
+          %br
+          = address.address
+          %br
+          = "#{address.city} #{address.zip}"
+          %br
+          = address.country
+          %br
+          = "Phone #{address.phone}"
+    .col-sm-3
+      %h3.general-subtitle Shipments
+      %p.general-address
+        = @order.delivery.title
+        %span.general-edit= link_to 'edit', wizard_path(:delivery)
+        %br
+        = @order.delivery.days
+    .col-sm-3
+      %h3.general-subtitle Payment Information
+      %p.general-address
+        = "** ** ** #{@form.credit_card.number.last(4)}"
+        %span.general-edit= link_to 'edit', wizard_path(:payment)
+        %br
+        = @form.credit_card.expiration_date
+  .visible-xs
+    - @order.order_items.each do |order_item|
+      .general-cart-item.divider-lg
+        %p.title= order_item.product.title
+        %table.table
+          %tr
+            %td
+              %span.in-grey-600 Price
+            %td
+              %span.font-16.in-gold-500= "€#{order_item.product.price}"
+          %tr
+            %td.vertical-middle
+              %span.in-grey-600 Quantity
+            %td
+              %span= order_item.quantity
+          %tr
+            %td
+              %span.in-grey-600 SubTotal
+            %td
+              %span.font-16.in-gold-500= "€#{order_item.decorate.subtotal}"
+  .hidden-xs.divider-lg.pt-20
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+            %span.in-grey-600 Product
+          %th.col-method
+          %th
+            %span.in-grey-600 Price
+          %th
+            %span.in-grey-600 Quantity
+          %th
+            %span.in-grey-600 Total
+      %tbody
+        - @order.order_items.each do |order_item|
+          %tr
+            %td
+              %p.title= order_item.product.title
+            %td
+              %span.font-16.in-gold-500= "€#{order_item.product.price}"
+            %td
+              %span.ml-30= order_item.quantity
+            %td
+              %span.font-16.in-gold-500= "€#{order_item.decorate.subtotal}"
+  .text-center.general-text-right
+    %p.in-gold-500.font-18 Order Summary
+    %table.general-summary-table.general-summary-table-right.general-text-right
+      %tr
+        %td
+          %p.font-16 Subtotal:
+        %td
+          %p.font-16= "€#{@order.subtotal}"
+      %tr
+        %td
+          %p.font-16 Coupon:
+        %td
+          %p.font-16= "€#{@order.sale}"
+      %tr
+        %td
+          %strong.font-18 Order Total:
+        %td
+          %strong.font-18= "€#{@order.total_with_delivery}"
+  .text-center
+    = link_to 'Place Order', wizard_path, class: 'btn btn-default mb-20', id: 'confirm-submit-btn', method: :put

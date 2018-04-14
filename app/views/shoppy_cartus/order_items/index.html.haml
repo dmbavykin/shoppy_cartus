@@ -1,0 +1,99 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin Cart
+  - if @order.order_items.any?
+    .visible-xs
+      - @items.each do |item|
+        .general-cart-item.divider-lg-bottom.mb-30
+          = link_to(order_item_path(item), method: :delete, class: 'close general-cart-close', 'aria-label': "Close") do
+            %span{'aria-hidden': "true"} &times;
+          %p.title= item.product.title
+          %table.table
+            %tr
+              %td
+                %span.in-grey-600 Price
+              %td
+                %span.font-16.in-gold-500= "€#{item.product.price}"
+            %tr
+              %td.vertical-middle
+                %span.in-grey-600 Quantity
+              %td
+                .input-group
+                  %a.input-link{href: "#"}
+                    %i.fa.fa-minus.line-heaght-40
+                  %input.form-control.quantity-input{type: "text", value: item.quantity}
+                  %a.input-link{href: "#"}
+                    %i.fa.fa-plus.line-heaght-40
+            %tr
+              %td
+                %span.in-grey-600 SubTotal
+              %td
+                %span.font-16.in-gold-500= "€#{item.subtotal}"
+    .hidden-xs
+      %table.table.table-hover
+        %tr.no-hover
+          %th.col-pic.pl-0
+            %span.in-grey-600 Product
+          %th.col-title
+          %th.col-price
+            %span.in-grey-600 Price
+          %th.col-quantity
+            %span.in-grey-600 Quantity
+          %th.col-total
+            %span.in-grey-600 SubTotal
+          %th.col-close
+        - @items.each do |item|
+          %tr
+            %td
+              %p.title= item.product.title
+            %td
+              %span.font-16.in-gold-500= "€#{item.product.price}"
+            %td
+              .input-group
+                - if item.quantity > 1
+                  = link_to order_item_path(item), method: :put, class: 'input-link' do
+                    %i.fa.fa-minus.line-heaght-40
+                %input.form-control.quantity-input{type: "text", value: item.quantity}
+                - if item.quantity < item.product.quantity
+                  = link_to order_item_path(item, increment: true), method: :put, class: 'input-link' do
+                    %i.fa.fa-plus.line-heaght-40
+            %td
+              %span.font-16.in-gold-500= "€#{item.subtotal}"
+            %td
+              = link_to(order_item_path(item), method: :delete, class: 'close general-cart-close', 'aria-label': "Close") do
+                %span{'aria-hidden': "true"} &times;
+    .general-order-wrap
+      .row
+        .col-sm-4
+          - if @order.coupon
+            = link_to 'Remove Coupon', coupon_path(@order.coupon), class: 'btn btn-primary mr-5 mb-15', id: 'coupon-code-btn', method: :delete
+          - else
+            = simple_form_for(:coupon, url: coupons_path, method: :post) do |f|
+              .input-group.general-input-group
+                = f.input :code, placeholder: 'Enter Your Coupon Code', input_html: { class: 'mb-30' },
+                  label_html: { class: 'input-label' }, label: 'Enter Your Coupon Code'
+                %div
+                  = f.button :submit, class: 'btn-primary mr-5 mb-15', value: 'Apply Coupon', id: 'coupon-code-btn'
+        .col-sm-8
+          .res-mr-200.text-center.general-text-right
+            %p.in-gold-500.font-18 Order Summary
+            %table.general-summary-table.general-summary-table-right.general-text-right
+              %tr
+                %td
+                  %p.font-16 Subtotal:
+                %td
+                  %p.font-16= "€#{@order.subtotal}"
+              %tr
+                %td
+                  %p.font-16 Coupon:
+                %td
+                  %p.font-16= "€#{@order.sale}"
+              %tr
+                %td
+                  %strong.font-18 Order Total:
+                %td
+                  %strong.font-18= "€#{@order.total}"
+            = link_to order_steps_path do
+              %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
+    = link_to 'Checkout', order_steps_path, class: 'btn btn-default mb-20 hidden-xs center-block col-sm-2'
+  - else
+    %h2= t('cart.empty')

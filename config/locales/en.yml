@@ -1,0 +1,45 @@
+en:
+  address:
+    successful:
+      create: Address successful created
+      update: Address successful updated
+    failure:
+      create: Address does not created
+      update: Address does not updated
+    inputs_placeholders:
+      first_name: First Name
+      last_name: Last Name
+      address: Address
+      city: City
+      zip: Zip
+      country: Country
+      phone: Example +355 66 123 4567
+    inputs_labels:
+      first_name: First Name
+      last_name: Last Name
+      address: Address
+      city: City
+      zip: Zip
+      country: Select a country
+      phone: Phone
+  coupon:
+    not_exist: Coupon does not exist
+    used: Coupon alredy used
+    added: Coupon added
+    removed: Coupon removed
+  cart:
+    no_more: 'You can`t add more products'
+    no_less: 'You can`t buy less then one product'
+    successful_added: Product added successful
+    alredy_added: Product alredy added
+    empty: You`ve not any products in cart
+    removed_successful: Product successful removed from cart
+  order:
+    confirmed: Order confirmed
+    confirm_email_subject: Confirm your order
+    wrong_token: Wrong token
+    delivery:
+      error: Choose delivery method
+  checkout:
+    confirm_step_btn: Save and Continue
+    authorize: Authorize

@@ -1,0 +1,90 @@
+%main.container.general-main-wrap
+  %h1.general-title-margin= " Order #{@_order.track_number}"
+  .row.mb-20
+    - @_order.addresses.each do |address|
+      .col-sm-3
+        %h3.general-subtitle.mt-0= "#{address.kind.capitalize} Address"
+        %p.general-address
+          = "#{address.first_name} #{address.last_name}"
+          %br
+          = address.address
+          %br
+          = "#{address.city} #{address.zip}"
+          %br
+          = address.country
+          %br
+          = "Phone #{address.phone}"
+    .col-sm-3
+      %h3.general-subtitle.mt-0 Shipments
+      %p.general-address
+        = @_order.delivery.title
+        %br
+        = @_order.delivery.days
+    .col-sm-3
+      %h3.general-subtitle.mt-0 Payment Information
+      %p.general-address
+        = "** ** ** #{@_order.credit_card.number.last(4)}"
+        %br
+        = @_order.credit_card.expiration_date
+  .visible-xs
+    - @_order.order_items.each do |order_item|
+      .general-cart-item.divider-lg.mb-55
+        %p.title= order_item.product.title
+        %table.table
+          %tr
+            %td
+              %span.in-grey-600 Price
+            %td
+              %span.font-16.in-gold-500= "€#{order_item.product.price}"
+          %tr
+            %td.vertical-middle
+              %span.in-grey-600 Quantity
+            %td
+              %span= order_item.quantity
+          %tr
+            %td
+              %span.in-grey-600 SubTotal
+            %td
+              %span.font-16.in-gold-500= "€#{order_item.decorate.subtotal}"
+  .hidden-xs.divider-lg.pt-20
+    %table.table.table-hover
+      %thead
+        %tr
+          %th
+            %span.in-grey-600 Product
+          %th.col-method
+          %th
+            %span.in-grey-600 Price
+          %th
+            %span.in-grey-600 Quantity
+          %th
+            %span.in-grey-600 Total
+      %tbody
+        - @_order.order_items.each do |order_item|
+          %tr
+            %td
+              %p.title= order_item.product.title
+            %td
+              %span.font-16.in-gold-500= "€#{order_item.product.price}"
+            %td
+              %span.ml-30= order_item.quantity
+            %td
+              %span.font-16.in-gold-500= "€#{order_item.decorate.subtotal}"
+  .text-center.general-text-right
+    %p.in-gold-500.font-18 Order Summary
+    %table.general-summary-table.general-summary-table-right.general-text-right
+      %tr
+        %td
+          %p.font-16 Subtotal:
+        %td
+          %p.font-16= "€#{@_order.subtotal}"
+      %tr
+        %td
+          %p.font-16 Coupon:
+        %td
+          %p.font-16= "€#{@_order.sale}"
+      %tr
+        %td
+          %strong.font-18 Order Total:
+        %td
+          %strong.font-18= "€#{@_order.total_with_delivery}"

@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Shoppy cartus
+    = stylesheet_link_tag    'shoppy_cartus/application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'shoppy_cartus/application', 'data-turbolinks-track': 'reload'
+    = csrf_meta_tags
+  %body
+    = render 'shoppy_cartus/partials/flash_messages'
+    = yield
